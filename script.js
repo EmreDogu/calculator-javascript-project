@@ -1,6 +1,6 @@
 let beforeArray = [];
 let afterArray = [];
-const screen = document.querySelector(".screen");
+let screen = document.querySelector(".screen");
 
 function add (a, b) {
     let num = Number(a) + Number(b);
@@ -39,8 +39,7 @@ function operate(... args) {
 }
 
 function digitPress(digit) {
-    const screen = document.querySelector(".screen");
-    return screen.textContent;
+    screen.textContent += digit.textContent;
 }
 
 const digits = document.querySelectorAll(".digit");
@@ -51,19 +50,19 @@ digits.forEach(digit => digit.addEventListener("click", function() {
 
 const operator = document.querySelectorAll(".operator");
 operator.forEach(op => op.addEventListener("click", function() {
-    beforeArray.push(document.querySelector(".screen").textContent);
+    beforeArray.push(screen.textContent);
         if (op.textContent === "+") {
             beforeArray.push("plus");
-            document.querySelector(".screen").innerHTML = "";
+            screen.textContent = "";
         }else if (op.textContent === "-") {
             beforeArray.push("minus");
-            document.querySelector(".screen").innerHTML = "";
+            screen.textContent = "";
         }else if (op.textContent === "*") {
             beforeArray.push("times");
-            document.querySelector(".screen").innerHTML = "";
+            screen.textContent = "";
         }else if (op.textContent === "/") {
             beforeArray.push("divided");
-            document.querySelector(".screen").innerHTML = "";
+            screen.textContent = "";
         }
     })
 );
@@ -75,4 +74,10 @@ result.addEventListener("click", function() {
         operate(beforeArray);
         beforeArray = [];
     }
+});
+
+const clear = document.querySelector(".clear");
+result.addEventListener("click", function() {
+    beforeArray = [];
+    screen.textContent = "";
 });
