@@ -2,7 +2,7 @@ let beforeArray = [];
 let afterArray = [];
 let screen = document.querySelector(".screen");
 
-function add (a, b) {
+function add(a, b) {
     let num = Number(a) + Number(b);
     screen.textContent = Math.round(num * 100) / 100;
 }
@@ -50,7 +50,15 @@ digits.forEach(digit => digit.addEventListener("click", function() {
 
 const operator = document.querySelectorAll(".operator");
 operator.forEach(op => op.addEventListener("click", function() {
-    beforeArray.push(screen.textContent);
+    if (screen.textContent!="") {
+        beforeArray.push(screen.textContent);
+    }
+    if (beforeArray.length >= 3) {
+        operate(beforeArray);
+        beforeArray.shift();
+        beforeArray.shift();
+        beforeArray[0] = screen.textContent;
+    }
         if (op.textContent === "+") {
             beforeArray.push("plus");
             screen.textContent = "";
@@ -72,12 +80,13 @@ result.addEventListener("click", function() {
     beforeArray.push(document.querySelector(".screen").textContent);
     if (beforeArray.length >= 3) {
         operate(beforeArray);
-        beforeArray = [];
+        beforeArray.shift();
+        beforeArray.shift();
+        beforeArray.shift();
     }
 });
 
 const clear = document.querySelector(".clear");
-result.addEventListener("click", function() {
-    beforeArray = [];
+clear.addEventListener("click", function() {
     screen.textContent = "";
 });
