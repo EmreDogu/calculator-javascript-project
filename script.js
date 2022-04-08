@@ -55,8 +55,17 @@ function mod(a, b) {
 }
 
 function root(a, b) {
-    let root = Math.pow(Number(b), 1/Number(a));
-    screen.textContent = Math.round(root * 1000) / 1000;
+    let x = Number(b);
+    let n = Number(a);
+    try {
+        var negate = n % 2 == 1 && x < 0;
+        if(negate)
+          x = -x;
+        var possible = Math.pow(x, 1 / n);
+        n = Math.pow(possible, n);
+        if(Math.abs(x - n) < 1 && (x > 0 == n > 0))
+         screen.textContent = negate ? -possible : possible;
+      } catch(e){}
 }
 
 function operate(...args) {
