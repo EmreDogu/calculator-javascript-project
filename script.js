@@ -1,5 +1,3 @@
-//root, backspace, -'li sayı (minus class), float, mod to be added
-
 let beforeArray = [];
 let afterArray = [];
 let screen = document.querySelector(".screen");
@@ -7,17 +5,17 @@ let flag = true;
 
 function add(a, b) {
     let num = Number(a) + Number(b);
-    screen.textContent = Math.round(num * 100) / 100;
+    screen.textContent = Math.round(num * 1000) / 1000;
 }
 
 function subtract(a, b) {
     let num = Number(a) - Number(b);
-    screen.textContent = Math.round(num * 100) / 100;
+    screen.textContent = Math.round(num * 1000) / 1000;
 }
 
 function multiply(a, b) {
     let num = Number(a) * Number(b);
-    screen.textContent = Math.round(num * 100) / 100;
+    screen.textContent = Math.round(num * 1000) / 1000;
 }
 
 function divide(a, b) {
@@ -25,7 +23,7 @@ function divide(a, b) {
         screen.textContent = "You naught naughty :)";
     } else {
         let num = Number(a) / Number(b);
-        screen.textContent = Math.round(num * 100) / 100;
+        screen.textContent = Math.round(num * 1000) / 1000;
     }
 }
 
@@ -36,7 +34,7 @@ function factorial(a) {
       factorial *= fact;
       fact--;
     }
-    screen.textContent = factorial;
+    screen.textContent = Math.round(factorial * 1000) / 1000;
 }
 
 function power(a, b) {
@@ -48,7 +46,17 @@ function power(a, b) {
     power *= base;
     i++;
   }
-  screen.textContent = power;
+  screen.textContent = Math.round(power * 1000) / 1000;
+}
+
+function mod(a, b) {
+    let mod = Number(a) % Number(b);
+    screen.textContent = Math.round(mod * 1000) / 1000;
+}
+
+function root(a, b) {
+    let root = Math.pow(Number(b), 1/Number(a));
+    screen.textContent = Math.round(root * 1000) / 1000;
 }
 
 function operate(...args) {
@@ -66,6 +74,10 @@ function operate(...args) {
         return divide(a, b);
     } else if (operator === "power") {
         return power(a, b);
+    } else if (operator === "mod") {
+        return mod(a, b);
+    } else if (operator === "root") {
+        return root(a, b);
     }
 }
 
@@ -76,6 +88,22 @@ digits.forEach(digit => digit.addEventListener("click", function () {
     }
 })
 );
+
+const float = document.querySelector(".float");
+float.addEventListener("click", function () {
+    if (screen.textContent!="" && flag && !screen.textContent.includes(".")) {
+        screen.textContent += float.textContent;
+    }
+});
+
+const negative = document.querySelector(".negative");
+negative.addEventListener("click", function () {
+    if (screen.textContent=="") {
+        screen.textContent = "-";
+    }else if (screen.textContent=="-") {
+        screen.textContent = "";
+    }
+});
 
 const operator = document.querySelectorAll(".operator");
 operator.forEach(op => op.addEventListener("click", function () {
@@ -98,7 +126,7 @@ operator.forEach(op => op.addEventListener("click", function () {
         beforeArray[0] = screen.textContent;
     }
 
-    if (!beforeArray.includes("plus") && !beforeArray.includes("minus") && !beforeArray.includes("times") && !beforeArray.includes("divided") && !beforeArray.includes("power")) {
+    if (!beforeArray.includes("plus") && !beforeArray.includes("minus") && !beforeArray.includes("times") && !beforeArray.includes("divided") && !beforeArray.includes("power") && !beforeArray.includes("mod")) {
         if (op.textContent === "+") {
             beforeArray.push("plus");
             screen.textContent = "";
@@ -113,6 +141,12 @@ operator.forEach(op => op.addEventListener("click", function () {
             screen.textContent = "";
         } else if (op.id === "power") {
             beforeArray.push("power");
+            screen.textContent = "";
+        } else if (op.textContent === "%") {
+            beforeArray.push("mod");
+            screen.textContent = "";
+        } else if (op.id === "root") {
+            beforeArray.push("root");
             screen.textContent = "";
         }
     }
@@ -138,4 +172,13 @@ clear.addEventListener("click", function () {
     flag = true;
     screen.textContent = "";
     beforeArray = [];
+});
+
+const backspace = document.querySelector(".backspace");
+backspace.addEventListener("click", function () {
+    if (flag) {
+        if (screen.textContent!="") {
+            screen.textContent=screen.textContent.slice(0, screen.textContent.length-1);
+        }
+    }
 });
