@@ -5,17 +5,17 @@ let flag = true;
 
 function add(a, b) {
     let num = Number(a) + Number(b);
-    screen.textContent = Math.round(num * 1000) / 1000;
+    screen.textContent = Math.round(num * 1000000) / 1000000;
 }
 
 function subtract(a, b) {
     let num = Number(a) - Number(b);
-    screen.textContent = Math.round(num * 1000) / 1000;
+    screen.textContent = Math.round(num * 1000000) / 1000000;
 }
 
 function multiply(a, b) {
     let num = Number(a) * Number(b);
-    screen.textContent = Math.round(num * 1000) / 1000;
+    screen.textContent = Math.round(num * 1000000) / 1000000;
 }
 
 function divide(a, b) {
@@ -23,7 +23,7 @@ function divide(a, b) {
         screen.textContent = "You naught naughty :)";
     } else {
         let num = Number(a) / Number(b);
-        screen.textContent = Math.round(num * 1000) / 1000;
+        screen.textContent = Math.round(num * 1000000) / 1000000;
     }
 }
 
@@ -34,7 +34,7 @@ function factorial(a) {
       factorial *= fact;
       fact--;
     }
-    screen.textContent = Math.round(factorial * 1000) / 1000;
+    screen.textContent = Math.round(factorial * 1000000) / 1000000;
 }
 
 function power(a, b) {
@@ -46,12 +46,12 @@ function power(a, b) {
     power *= base;
     i++;
   }
-  screen.textContent = Math.round(power * 1000) / 1000;
+  screen.textContent = Math.round(power * 1000000) / 1000000;
 }
 
 function mod(a, b) {
     let mod = Number(a) % Number(b);
-    screen.textContent = Math.round(mod * 1000) / 1000;
+    screen.textContent = Math.round(mod * 1000000) / 1000000;
 }
 
 function root(a, b) {
@@ -66,6 +66,11 @@ function root(a, b) {
         if(Math.abs(x - n) < 1 && (x > 0 == n > 0))
          screen.textContent = negate ? -possible : possible;
       } catch(e){}
+}
+
+function log10(a) {
+    let num = Math.log(Number(a)) / Math.log(10);
+    screen.textContent = Math.round(num * 1000000) / 1000000;
 }
 
 function operate(...args) {
@@ -121,6 +126,12 @@ operator.forEach(op => op.addEventListener("click", function () {
     if(op.textContent=="x!") {
         flag = false;
         factorial(screen.textContent);
+        return;
+    }
+
+    if(op.id=="log10") {
+        flag = false;
+        log10(screen.textContent);
         return;
     }
 

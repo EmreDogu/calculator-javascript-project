@@ -1,8 +1,60 @@
-.middle {
-    display: flex;
-    flex-direction: column;
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
 }
 
-.result {
-    width: 50px;
+.header, .copyright {
+    font-size: 28px;
+    padding: 10px;
+    color: white;
+    background-color: grey;
+    text-align: center;
+}
+
+.middle {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    background-color: #333;
+    align-items: center;
+    justify-content: center;
+}
+
+.allButtons, .screen {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 66%;
+    height: 66%;
+}
+
+.screen {
+    background-color: lightyellow;
+    height: 25%;
+    width: 90%;
+    margin-bottom: 1%;
+    font-size: 32px;
+}
+
+.firstRow, .secondRow, .thirdRow, .fourthRow {
+    width: 95%;
+    margin: 2%;
+    justify-content: space-between;
+    text-align: center;
+}
+
+button {
+    width: 15%;
+    height: 133%;
+    background-color: lightslategray;
+}
+
+a {
+    text-decoration: none;
+    color: lightskyblue;
+    margin-left: 2%;
 }
