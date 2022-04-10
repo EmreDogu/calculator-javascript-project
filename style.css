@@ -33,7 +33,9 @@ body, html {
 }
 
 .screen {
-    background-color: lightyellow;
+    background-color: #f5f5dc;
+    align-items: flex-end;
+    padding-right: 5%;
     height: 25%;
     width: 90%;
     margin-bottom: 1%;
