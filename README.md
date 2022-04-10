@@ -1,6 +1,6 @@
 # calculator-javascript-project
 
-Final [project](https://www.theodinproject.com/lessons/foundations-calculator) of Foundations part from The Odin Project Full Stack Development course! Now it's time for general Back End and advanced Front End lectures to go through. For this project, I have designed a fully functional calculator, where you can do such things:
+Final [project](https://www.theodinproject.com/lessons/foundations-calculator) of Foundations part from The Odin Project Full Stack Development course! Now it's time for me to start Back End and Advanced Front End lectures. For this project, I have designed a fully functional calculator, where you can do such things:
 
 <ul>
   <li>Usual arithmetic calculation (+,-,/,*)</li>
